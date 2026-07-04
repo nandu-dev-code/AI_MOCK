@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="eyebrow">Operations center</div>
+  <h2>Administrative dashboard</h2>
+  <p>Monitor platform activity and manage interview resources from a single, polished workspace.</p>
+</div>
+
+<div class="stats-grid">
+  <div class="card stat-box">
+    <h3>Total users</h3>
+    <h2>{{ total_users }}</h2>
+  </div>
+  <div class="card stat-box">
+    <h3>Total interviews</h3>
+    <h2>{{ total_interviews }}</h2>
+  </div>
+  <div class="card stat-box">
+    <h3>Question bank</h3>
+    <a href="/admin/questions" class="btn btn-secondary">Manage questions</a>
+  </div>
+  <div class="card stat-box">
+    <h3>Reports</h3>
+    <a href="/admin/reports" class="btn btn-secondary">View reports</a>
+  </div>
+  <div class="card stat-box">
+    <h3>Registered users</h3>
+    <a href="/admin/users" class="btn btn-secondary">Manage users</a>
+  </div>
+  <div class="card stat-box">
+    <h3>Analytics</h3>
+    <a href="/admin/analytics" class="btn btn-secondary">View statistics</a>
+  </div>
+</div>
+
+<div class="card table-card">
+  <h3>Recent interviews</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Domain</th>
+        <th>Score</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for interview in recent_interviews %}
+      <tr>
+        <td>{{ interview.username }}</td>
+        <td>{{ interview.domain }}</td>
+        <td>{{ interview.score }}/100</td>
+        <td>{{ interview.date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
