@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="eyebrow">Performance history</div>
+  <h2>Interview reports</h2>
+  <p>Review your saved interview responses, key metrics, and feedback in a structured, professional view.</p>
+</div>
+
+{% if report_items %}
+  {% for item in report_items %}
+    <div class="card report-card">
+      <div class="report-top">
+        <div>
+          <h3>{{ item.session.topic }}</h3>
+          <p class="report-meta">Created {{ item.session.created_at.strftime('%b %d, %Y %H:%M') if item.session.created_at else 'N/A' }}</p>
+        </div>
+        <span class="score-pill">{{ item.session.score }}%</span>
+      </div>
+
+      <div class="report-stats">
+        <div class="mini-stat">
+          <span>Feedback</span>
+          <strong>{{ item.session.feedback }}</strong>
+        </div>
+        <div class="mini-stat">
+          <span>Duration</span>
+          <strong>{{ item.session.duration }}s</strong>
+        </div>
+        <div class="mini-stat">
+          <span>Responses</span>
+          <strong>{{ item.answers|length if item.answers else 0 }}</strong>
+        </div>
+      </div>
+
+      {% if item.answers %}
+        <div class="report-answers">
+          <h4>Saved answers</h4>
+          {% for answer in item.answers %}
+            <div class="mini-stat">
+              <span>Answer</span>
+              <strong>{{ answer.answer_text }}</strong>
+              <p style="margin: 0.4rem 0 0; color: var(--muted);">Transcript: {{ answer.transcript or 'No transcript captured' }}</p>
+              <p style="margin: 0.4rem 0 0; color: var(--muted);">Scores: Grammar {{ answer.grammar_score }}, Technical {{ answer.technical_score }}, Communication {{ answer.communication_score }}, Confidence {{ answer.confidence_score }}, Overall {{ answer.overall_score }}</p>
+              <p style="margin: 0.4rem 0 0; color: var(--muted);">Feedback: {{ answer.feedback }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">No answer details were stored for this interview session.</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% else %}
+  <div class="card empty-state">
+    <p>No reports yet. Complete an interview to generate one.</p>
+  </div>
+{% endif %}
+{% endblock %}

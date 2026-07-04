@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+  <div class="eyebrow">Create account</div>
+  <h2>Start your interview preparation journey</h2>
+  <p>Join the platform to run realistic mock interviews, review feedback, and track improvement over time.</p>
+</div>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <h2>Register now</h2>
+    <p>Set up your profile and begin practicing with a polished, professional experience.</p>
+    <form method="post" class="auth-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" name="username" required placeholder="Choose a username">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required placeholder="Create a password">
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input id="confirm_password" name="confirm_password" type="password" required placeholder="Confirm your password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create account</button>
+    </form>
+  </div>
+
+  <div class="info-panel">
+    <h3>What you gain</h3>
+    <p>From your first session onward, the platform gives you a structured path to grow your confidence and clarity.</p>
+    <div class="mini-list">
+      <div><i class="fa-solid fa-rocket"></i><span>Quick onboarding</span></div>
+      <div><i class="fa-solid fa-chart-line"></i><span>Clear performance insights</span></div>
+      <div><i class="fa-solid fa-shield-halved"></i><span>Secure account access</span></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
